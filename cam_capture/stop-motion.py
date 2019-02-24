@@ -1,5 +1,14 @@
 import time
 import cv2
+import os
+
+
+DIRNAME = "imgs_stopmotion"
+if not os.path.exists(DIRNAME):
+    os.makedirs(DIRNAME)
+
+SECONDS_PER_TICK = 30.0
+
 starttime=time.time()
 
 cam = cv2.VideoCapture(1)
@@ -14,12 +23,12 @@ while True:
     if not ret:
         break
     k = cv2.waitKey(1)
-    print "tick"
+    print("tick")
     img_name = "stop_motion_{}.png".format(int(time.time()))
-    cv2.imwrite(img_name, frame)
-    print("{} Stop motion!".format(img_name))
+    cv2.imwrite(os.path.join(DIRNAME, img_name), frame)
+    print("{} Stop motion!".format(os.path.join(DIRNAME, img_name)))
     img_counter += 1
-    time.sleep(30.0 - ((time.time() - starttime) % 30.0))
+    time.sleep(SECONDS_PER_TICK - ((time.time() - starttime) % SECONDS_PER_TICK))
 
 cam.release()
 
