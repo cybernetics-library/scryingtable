@@ -9,6 +9,10 @@ if not os.path.exists(DIRNAME):
 
 cam = cv2.VideoCapture(1)
 
+cam.set(3,1920)
+
+cam.set(4,1080)
+
 cv2.namedWindow("standalone")
 
 img_counter = 0

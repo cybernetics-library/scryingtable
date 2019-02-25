@@ -13,6 +13,10 @@ starttime=time.time()
 
 cam = cv2.VideoCapture(1)
 
+cam.set(3,1920)
+
+cam.set(4,1080)
+
 cv2.namedWindow("stopmotion")
 
 img_counter = 0
